@@ -1,0 +1,181 @@
+ /* ---------- Root Theme ---------- */
+:root {
+  --bg: #0d0d0d;
+  --bg-gradient: radial-gradient(circle at top left, #1a1a1a, #000);
+  
+  --accent: #ff7a00;
+  --accent-hover: #ff5500;
+  --text-light: black;
+  
+  --radius: 16px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  color: var(--text-light);
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle background glow */
+.container::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.25), transparent 70%);
+  filter: blur(100px);
+  animation: floatGlow 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-60px, 40px); }
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 1s ease forwards;
+  border: 1px solid rgba(255, 122, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Heading ---------- */
+h2 {
+  font-size: 2.2rem;
+  color: var(--accent);
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 122, 0, 0.3);
+}
+
+/* ---------- Inputs ---------- */
+input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  color: var(--text-light);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 122, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ---------- Button ---------- */
+.btn {
+  background: var(--accent);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 25px rgba(255, 122, 0, 0.5);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* ---------- Error Message ---------- */
+.error {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff6961;
+  padding: 12px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  text-align: center;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  animation: shake 0.4s ease;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .card {
+    padding: 40px 25px;
+    max-width: 380px;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  input, .btn {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 10px;
+  }
+
+  .card {
+    padding: 30px 20px;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+  }
+
+  input {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
