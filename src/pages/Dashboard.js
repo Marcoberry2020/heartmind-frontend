@@ -169,7 +169,7 @@ export default function Dashboard() {
           <div className="messages">
             {messages.map((m, i) => (
               <div key={i} className={`msg ${m.role}`}>
-                {m.role === 'assistant' && <img src="/heartmind.png" alt="HeartMind" className="avatar" />}
+                {m.role === 'assistant' && <img src="/heartmind.jpeg" alt="HeartMind" className="avatar" />}
                 <div className="bubble">{m.text}</div>
               </div>
             ))}
